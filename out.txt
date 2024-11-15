@@ -1,0 +1,864 @@
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(35.6574699, 139.6943605),
+    'Urban Coat Shibuya',
+    'Japan',
+    'JP',
+    'Tokyo',
+    'Shibuya City',
+    'Urban Coat Shibuya, 1f, 15-6 Maruyamachō, Shibuya City, Tokyo 150-0044, Japan',
+    'Ek5VcmJhbiBDb2F0IFNoaWJ1eWEsIDFmLCAxNS02IE1hcnV5YW1hY2jFjSwgU2hpYnV5YSBDaXR5LCBUb2t5byAxNTAtMDA0NCwgSmFwYW4iHhocChYKFAoSCbn5UneqjBhgES1IiLcv1E5gEgIxZg',
+    'ROOFTOP',
+    'ばん屋日本〒150-0044 Tokyo, Shibuya City, Maruyamacho, 15−6 Urban Coat Shibuya 1FTokyoJapan'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Shop';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Shop'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('4', (SELECT tag_id FROM Tags WHERE tag_name = 'Shop'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = '临摹';) BEGIN INSERT INTO Tags (tag_name) VALUES ('临摹'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('4', (SELECT tag_id FROM Tags WHERE tag_name = '临摹'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2021-01-28', '', '['Mateusz Urbanowicz']', 'watercolor', SELECT location_id FROM Locations WHERE google_place_id = 'Ek5VcmJhbiBDb2F0IFNoaWJ1eWEsIDFmLCAxNS02IE1hcnV5YW1hY2jFjSwgU2hpYnV5YSBDaXR5LCBUb2t5byAxNTAtMDA0NCwgSmFwYW4iHhocChYKFAoSCbn5UneqjBhgES1IiLcv1E5gEgIxZg' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(35.7246087, 139.7645647),
+    '3-chōme-2-3 Yanaka',
+    'Japan',
+    'JP',
+    'Tokyo',
+    'Taito City',
+    '3-chōme-2-3 Yanaka, Taito City, Tokyo 110-0001, Japan',
+    'ChIJc9DMUNKNGGARH0BdneqMVwI',
+    'ROOFTOP',
+    'Noike3 Chome-2-3 Yanaka, Taito City, Tokyo 110-0001日本YanakaJapan'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Shop';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Shop'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('5', (SELECT tag_id FROM Tags WHERE tag_name = 'Shop'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = '临摹';) BEGIN INSERT INTO Tags (tag_name) VALUES ('临摹'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('5', (SELECT tag_id FROM Tags WHERE tag_name = '临摹'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2021-01-28', '', '['Mateusz Urbanowicz']', 'watercolor', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJc9DMUNKNGGARH0BdneqMVwI' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(35.6850446, 139.7416241),
+    '2f',
+    'Japan',
+    'JP',
+    'Tokyo',
+    'Chiyoda City',
+    '2f, 1-chōme-8 Kōjimachi, Chiyoda City, Tokyo 102-0083, Japan',
+    'Ej4yZiwgMS1jaMWNbWUtOCBLxY1qaW1hY2hpLCBDaGl5b2RhIENpdHksIFRva3lvIDEwMi0wMDgzLCBKYXBhbiIeGhwKFgoUChIJNZdurnqMGGARvm3V1-5fulMSAjJm',
+    'ROOFTOP',
+    '大戸屋日本〒102-0083 Tokyo, Chiyoda City, Kojimachi, 1 Chome−8 ATI ビル 2FTokyoJapan'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Shop';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Shop'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('6', (SELECT tag_id FROM Tags WHERE tag_name = 'Shop'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = '临摹';) BEGIN INSERT INTO Tags (tag_name) VALUES ('临摹'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('6', (SELECT tag_id FROM Tags WHERE tag_name = '临摹'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2021-01-28', '', '['Mateusz Urbanowicz']', 'watercolor', SELECT location_id FROM Locations WHERE google_place_id = 'Ej4yZiwgMS1jaMWNbWUtOCBLxY1qaW1hY2hpLCBDaGl5b2RhIENpdHksIFRva3lvIDEwMi0wMDgzLCBKYXBhbiIeGhwKFgoUChIJNZdurnqMGGARvm3V1-5fulMSAjJm' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(35.6674427, 139.7822281),
+    'Japan',
+    'Japan',
+    'JP',
+    'Tokyo',
+    'Chuo City',
+    'Japan, 〒104-0051 Tokyo, Chuo City, Tsukuda, 1-chōme−3−１３ 佃源田中屋',
+    'ChIJ-UyDnGWJGGARnjalOoekwp8',
+    'ROOFTOP',
+    '佃源 田中屋日本〒104-0051 Tokyo, Chuo City, Tsukuda, 1 Chome−3−13 佃源田中屋TokyoJapan'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Architecture';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Architecture'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('14', (SELECT tag_id FROM Tags WHERE tag_name = 'Architecture'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Black & White';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Black & White'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('14', (SELECT tag_id FROM Tags WHERE tag_name = 'Black & White'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2021-06-18', '', '[]', 'ink pen', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJ-UyDnGWJGGARnjalOoekwp8' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(35.6961148, 139.7687883),
+    '1-chōme-13 Kanda Sudachō',
+    'Japan',
+    'JP',
+    'Tokyo',
+    'Chiyoda City',
+    '1-chōme-13 Kanda Sudachō, Chiyoda City, Tokyo 101-0041, Japan',
+    'ChIJQ3MESwOMGGARX99d47o0V6k',
+    'ROOFTOP',
+    '神田 松屋Kanda Matsuya, 1 Chome-13 Kanda Sudacho, Chiyoda City, Tokyo 101-0041日本TokyoJapan'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Architecture';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Architecture'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('15', (SELECT tag_id FROM Tags WHERE tag_name = 'Architecture'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Black & White';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Black & White'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('15', (SELECT tag_id FROM Tags WHERE tag_name = 'Black & White'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2021-07-06', '', '[]', 'ink pen', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJQ3MESwOMGGARX99d47o0V6k' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(36.204824, 138.252924),
+    'Japan',
+    'Japan',
+    'JP',
+    'None',
+    'None',
+    'Japan',
+    'ChIJLxl_1w9OZzQRRFJmfNR1QvU',
+    'APPROXIMATE',
+    'Japan'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Shop';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Shop'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('16', (SELECT tag_id FROM Tags WHERE tag_name = 'Shop'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = '临摹';) BEGIN INSERT INTO Tags (tag_name) VALUES ('临摹'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('16', (SELECT tag_id FROM Tags WHERE tag_name = '临摹'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2021-07-25', '', '[]', 'watercolor', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJLxl_1w9OZzQRRFJmfNR1QvU' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(36.4894984, 139.0035962),
+    '203-4 Ishihara',
+    'Japan',
+    'JP',
+    'Gunma',
+    'Shibukawa',
+    '203-4 Ishihara, Shibukawa, Gunma 377-0007, Japan',
+    'ChIJZ4tY8ZphHmARcUOjzHhfDQg',
+    'ROOFTOP',
+    '藤原豆腐店Japan'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Shop';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Shop'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('17', (SELECT tag_id FROM Tags WHERE tag_name = 'Shop'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = '临摹';) BEGIN INSERT INTO Tags (tag_name) VALUES ('临摹'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('17', (SELECT tag_id FROM Tags WHERE tag_name = '临摹'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2021-07-25', '', '['《头文字D》电影场景']', 'watercolor', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJZ4tY8ZphHmARcUOjzHhfDQg' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(36.204824, 138.252924),
+    'Japan',
+    'Japan',
+    'JP',
+    'None',
+    'None',
+    'Japan',
+    'ChIJLxl_1w9OZzQRRFJmfNR1QvU',
+    'APPROXIMATE',
+    'Japan'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Shop';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Shop'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('18', (SELECT tag_id FROM Tags WHERE tag_name = 'Shop'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = '临摹';) BEGIN INSERT INTO Tags (tag_name) VALUES ('临摹'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('18', (SELECT tag_id FROM Tags WHERE tag_name = '临摹'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2021-07-25', '', '[]', 'watercolor', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJLxl_1w9OZzQRRFJmfNR1QvU' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(36.204824, 138.252924),
+    'Japan',
+    'Japan',
+    'JP',
+    'None',
+    'None',
+    'Japan',
+    'ChIJLxl_1w9OZzQRRFJmfNR1QvU',
+    'APPROXIMATE',
+    'Japan'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Shop';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Shop'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('19', (SELECT tag_id FROM Tags WHERE tag_name = 'Shop'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = '临摹';) BEGIN INSERT INTO Tags (tag_name) VALUES ('临摹'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('19', (SELECT tag_id FROM Tags WHERE tag_name = '临摹'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2021-07-25', '', '[]', 'watercolor', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJLxl_1w9OZzQRRFJmfNR1QvU' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(36.204824, 138.252924),
+    'Japan',
+    'Japan',
+    'JP',
+    'None',
+    'None',
+    'Japan',
+    'ChIJLxl_1w9OZzQRRFJmfNR1QvU',
+    'APPROXIMATE',
+    'Japan'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Shop';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Shop'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('20', (SELECT tag_id FROM Tags WHERE tag_name = 'Shop'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = '临摹';) BEGIN INSERT INTO Tags (tag_name) VALUES ('临摹'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('20', (SELECT tag_id FROM Tags WHERE tag_name = '临摹'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2021-07-25', '', '[]', 'watercolor', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJLxl_1w9OZzQRRFJmfNR1QvU' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(35.6718773, 139.7709387),
+    'Japan',
+    'Japan',
+    'JP',
+    'Tokyo',
+    'Chuo City',
+    'Japan, 〒123-0032 Tokyo, Chuo City, Ginza, 1-chōme−22−１１ 2F',
+    'ChIJbzIhJZSLGGAR_wRIrdwXUfc',
+    'ROOFTOP',
+    '酒蔵 秩父錦2-chōme-13-14 Ginza, Chuo City, Tokyo 104-0061日本TokyoJapan'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Architecture';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Architecture'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('21', (SELECT tag_id FROM Tags WHERE tag_name = 'Architecture'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Black & White';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Black & White'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('21', (SELECT tag_id FROM Tags WHERE tag_name = 'Black & White'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2021-08-18', '', '[]', 'ink pen', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJbzIhJZSLGGAR_wRIrdwXUfc' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(26.870238, 100.2400889),
+    'China',
+    'China',
+    'CN',
+    'Yun Nan Sheng',
+    'Li Jiang Shi',
+    'China, Yun Nan Sheng, Li Jiang Shi, Gu Cheng Qu, 步行街V6CR+32W 邮政编码: 674100',
+    'ChIJhVc83GrKIDcR4qsPY6Ov-SA',
+    'GEOMETRIC_CENTER',
+    '白海螺客栈中国云南省丽江市古城区步行街 邮政编码: 674100云南省丽江市中国'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Architecture';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Architecture'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('22', (SELECT tag_id FROM Tags WHERE tag_name = 'Architecture'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Black & White';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Black & White'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('22', (SELECT tag_id FROM Tags WHERE tag_name = 'Black & White'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2021-11-25', '', '[]', 'ink pen', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJhVc83GrKIDcR4qsPY6Ov-SA' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(39.564899, 113.189066),
+    'China',
+    'China',
+    'CN',
+    'Shan Xi Sheng',
+    'Shuo Zhou Shi',
+    'China, Shan Xi Sheng, Shuo Zhou Shi, Ying Xian, Bei Jie, 佛宫寺内 邮政编码: 037699',
+    'ChIJpXkJTIf34jUR-X9Gn8CdobE',
+    'GEOMETRIC_CENTER',
+    '佛宫寺释迦塔（应县木塔）中国山西省朔州市应县北街佛宫寺内佛宫寺释迦塔 邮政编码: 037699山西省朔州市中国'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Architecture';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Architecture'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('23', (SELECT tag_id FROM Tags WHERE tag_name = 'Architecture'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Black & White';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Black & White'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('23', (SELECT tag_id FROM Tags WHERE tag_name = 'Black & White'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2021-11-30', '', '[]', 'ink pen', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJpXkJTIf34jUR-X9Gn8CdobE' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(38.5706177, 140.5305457),
+    'Ginzan Onsen',
+    'Japan',
+    'JP',
+    'Yamagata',
+    'Obanazawa',
+    'Ginzan Onsen, Ginzanshinhata, Obanazawa, Yamagata 999-4333, Japan',
+    'ChIJ7SNY19pdiV8RIRfQXnlYhtk',
+    'APPROXIMATE',
+    'Ginzan OnsenGinzan Onsen, Ginzanshinhata, Obanazawa, Yamagata 999-4333, JapanYamagataJapan'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Architecture';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Architecture'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('24', (SELECT tag_id FROM Tags WHERE tag_name = 'Architecture'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Black & White';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Black & White'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('24', (SELECT tag_id FROM Tags WHERE tag_name = 'Black & White'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2021-12-30', '', '[]', 'ink pen', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJ7SNY19pdiV8RIRfQXnlYhtk' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(59.9401, 30.3289),
+    'neberezhnaya kanala Griboyedova',
+    'Russia',
+    'RU',
+    'Sankt-Peterburg',
+    'Sankt-Peterburg',
+    'neberezhnaya kanala Griboyedova, 2Б, Sankt-Peterburg, Russia, 191186',
+    'ChIJbVFAKwwxlkYRt1Nx6jtvZz4',
+    'ROOFTOP',
+    'Church of the Savior on Blood (Храм Спаса на Крови)Griboyedov channel embankment, 2Б, St Petersburg, 俄罗斯191186PetersburgRussia'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Architecture';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Architecture'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('25', (SELECT tag_id FROM Tags WHERE tag_name = 'Architecture'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Black & White';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Black & White'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('25', (SELECT tag_id FROM Tags WHERE tag_name = 'Black & White'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2022-01-07', '', '[]', 'ink pen', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJbVFAKwwxlkYRt1Nx6jtvZz4' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(37.0339235, 111.9245728),
+    '2WMF+HR8',
+    'China',
+    'CN',
+    'Shanxi',
+    'Jinzhong',
+    '2WMF+HR8, Jiexiu, Jinzhong, Shanxi, China, 032000',
+    'ChIJpV3A7UiydTYRVCuTdJ6F4I8',
+    'GEOMETRIC_CENTER',
+    '祆神楼中国山西省晋中市介休市 邮政编码: 032000山西省晋中市介休市中国'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Architecture';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Architecture'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('26', (SELECT tag_id FROM Tags WHERE tag_name = 'Architecture'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Black & White';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Black & White'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('26', (SELECT tag_id FROM Tags WHERE tag_name = 'Black & White'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2022-04-15', '', '[]', 'ink pen', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJpV3A7UiydTYRVCuTdJ6F4I8' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(8.9692523, -79.5303661),
+    'Cinta Costera',
+    'Panama',
+    'PA',
+    'Provincia de Panamá',
+    'Panamá',
+    'Cinta Costera, Panamá, Provincia de Panamá, Panama',
+    'ChIJ59sFuMSorI8RUULKJhY8SKk',
+    'GEOMETRIC_CENTER',
+    'Cinta CosteraCinta Costera, Panamá, Provincia de Panamá, PanamaPanama CityPanama'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Architecture';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Architecture'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('27', (SELECT tag_id FROM Tags WHERE tag_name = 'Architecture'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Black & White';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Black & White'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('27', (SELECT tag_id FROM Tags WHERE tag_name = 'Black & White'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2022-05-25', '', '[]', 'ink pen', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJ59sFuMSorI8RUULKJhY8SKk' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(37.02959999999999, 111.91778),
+    '99 Miao Di Jie',
+    'China',
+    'CN',
+    'Shan Xi Sheng',
+    'Jin Zhong Shi',
+    '99 Miao Di Jie, Jie Xiu Shi, Jin Zhong Shi, Shan Xi Sheng, China, 032000',
+    'ChIJmWMrjU2ydTYRDuD3RHhqulw',
+    'ROOFTOP',
+    '介休后土庙中国山西省晋中市介休市庙底街99号 邮政编码: 032000山西省晋中市介休市中国'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Architecture';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Architecture'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('28', (SELECT tag_id FROM Tags WHERE tag_name = 'Architecture'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Black & White';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Black & White'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('28', (SELECT tag_id FROM Tags WHERE tag_name = 'Black & White'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2022-05-28', '', '[]', 'ink pen', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJmWMrjU2ydTYRDuD3RHhqulw' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(39.9168038, 116.3971621),
+    '4 Jing Shan Qian Jie',
+    'China',
+    'CN',
+    'Bei Jing Shi',
+    'None',
+    '4 Jing Shan Qian Jie, Dong Cheng Qu, Bei Jing Shi, China, 100009',
+    'ChIJPdQVRelS8DURnwfTTb3idAY',
+    'ROOFTOP',
+    '故宫北京市东城区景山前街4号 邮政编码: 100009北京市中国'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Architecture';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Architecture'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('29', (SELECT tag_id FROM Tags WHERE tag_name = 'Architecture'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Black & White';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Black & White'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('29', (SELECT tag_id FROM Tags WHERE tag_name = 'Black & White'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2022-06-12', '', '[]', 'ink pen', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJPdQVRelS8DURnwfTTb3idAY' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(28.3117299, 109.73893),
+    'Xiangxi Tujia and Miao Autonomous Prefecture',
+    'China',
+    'CN',
+    'Hunan',
+    'Xiangxi Tujia and Miao Autonomous Prefecture',
+    'Xiangxi Tujia and Miao Autonomous Prefecture, Hunan, China',
+    'ChIJKYttIu4qmDYRG46JTIZSG-c',
+    'APPROXIMATE',
+    '湘西中国湖南省湘西土家族苗族自治州湖南省中国'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Architecture';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Architecture'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('30', (SELECT tag_id FROM Tags WHERE tag_name = 'Architecture'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Black & White';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Black & White'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('30', (SELECT tag_id FROM Tags WHERE tag_name = 'Black & White'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2022-08-06', '', '[]', 'ink pen', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJKYttIu4qmDYRG46JTIZSG-c' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(48.8772871, 2.3313627),
+    'Pl. d''Estienne d''Orves',
+    'France',
+    'FR',
+    'Île-de-France',
+    'Paris',
+    'Pl. d''Estienne d''Orves, 75009 Paris, France',
+    'ChIJPwpqLEhu5kcR2qwkdF_ZSRA',
+    'GEOMETRIC_CENTER',
+    'Église de la Sainte-TrinitéPl. d''Estienne d''Orves, 75009 Paris, 法国ParisFrance'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Architecture';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Architecture'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('31', (SELECT tag_id FROM Tags WHERE tag_name = 'Architecture'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Black & White';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Black & White'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('31', (SELECT tag_id FROM Tags WHERE tag_name = 'Black & White'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2022-08-27', '', '[]', 'ink pen', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJPwpqLEhu5kcR2qwkdF_ZSRA' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(29.562273, 106.579177),
+    'Yuzhong District',
+    'China',
+    'CN',
+    'Chongqing',
+    'None',
+    'Yuzhong District, China, 400011',
+    'ChIJw2Yqr4E0kzYRwPSNgwikEQY',
+    'GEOMETRIC_CENTER',
+    '洪崖洞中国重庆市渝中区嘉陵江滨江路纸盐河街37 邮政编码: 400011重庆市中国'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Architecture';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Architecture'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('34', (SELECT tag_id FROM Tags WHERE tag_name = 'Architecture'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Black & White';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Black & White'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('34', (SELECT tag_id FROM Tags WHERE tag_name = 'Black & White'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2022-09-27', '', '[]', 'ink pen', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJw2Yqr4E0kzYRwPSNgwikEQY' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(39.9138664, 116.39721),
+    '4 Jing Shan Qian Jie',
+    'China',
+    'CN',
+    'Bei Jing Shi',
+    'None',
+    '4 Jing Shan Qian Jie, Dong Cheng Qu, China, 100009',
+    'ChIJaRSqlMFS8DURjaJcCNX8xoI',
+    'ROOFTOP',
+    '故宫 午门与金水桥北京市东城区景山前街4号 邮政编码: 100009北京市中国'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Architecture';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Architecture'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('35', (SELECT tag_id FROM Tags WHERE tag_name = 'Architecture'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Black & White';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Black & White'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('35', (SELECT tag_id FROM Tags WHERE tag_name = 'Black & White'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2022-12-01', '', '[]', 'ink pen', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJaRSqlMFS8DURjaJcCNX8xoI' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(37.204359, 112.18533),
+    'China',
+    'China',
+    'CN',
+    'Shan Xi Sheng',
+    'Jin Zhong Shi',
+    'China, Shan Xi Sheng, Jin Zhong Shi, Ping Yao Xian, Nan Da Jie, 明清一条街 邮政编码: 031199',
+    'ChIJhegrUlkKdTYRvQV9AYMkKSI',
+    'GEOMETRIC_CENTER',
+    '平遥古城 平遥市楼中国山西省晋中市平遥县山西省晋中市中国'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Architecture';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Architecture'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('36', (SELECT tag_id FROM Tags WHERE tag_name = 'Architecture'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Black & White';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Black & White'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('36', (SELECT tag_id FROM Tags WHERE tag_name = 'Black & White'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2022-12-22', '', '[]', 'ink pen', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJhegrUlkKdTYRvQV9AYMkKSI' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(22.894682, 113.294375),
+    '10 Sha Mian Nan Jie',
+    'China',
+    'CN',
+    'Guang Dong Sheng',
+    'Guang Zhou Shi',
+    '10 Sha Mian Nan Jie, Pan Yu Qu, Guang Zhou Shi, Guang Dong Sheng, China, 511487',
+    'ChIJccpEJOdNAjQR0mfmeSoEWHc',
+    'ROOFTOP',
+    '宝墨园中国广东省广州市番禺区紫坭村 邮政编码: 511487广州市中国'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Architecture';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Architecture'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('37', (SELECT tag_id FROM Tags WHERE tag_name = 'Architecture'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Black & White';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Black & White'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('37', (SELECT tag_id FROM Tags WHERE tag_name = 'Black & White'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2023-05-13', '', '[]', 'ink pen', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJccpEJOdNAjQR0mfmeSoEWHc' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(31.32357, 120.63071),
+    'China',
+    'China',
+    'CN',
+    'Jiang Su Sheng',
+    'Su Zhou Shi',
+    'China, Jiang Su Sheng, Su Zhou Shi, Gu Su Qu, 东北街178号 邮政编码: 215005',
+    'ChIJF5UGWsWmszUR3wG07WF5VsA',
+    'ROOFTOP',
+    '拙政园中国江苏省苏州市姑苏区东北街178号 邮政编码: 215001苏州市中国'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Architecture';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Architecture'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('38', (SELECT tag_id FROM Tags WHERE tag_name = 'Architecture'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Black & White';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Black & White'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('38', (SELECT tag_id FROM Tags WHERE tag_name = 'Black & White'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2023-11-09', '', '[]', 'ink pen', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJF5UGWsWmszUR3wG07WF5VsA' );
+
+INSERT INTO Locations (
+    coordinates,
+    location_name,
+    country,
+    country_code,
+    province,
+    city,
+    specific_address,
+    google_place_id,
+    location_type,
+    memo
+) VALUES (
+    POINT(35.415438, 110.834763),
+    'CR8M+5WC',
+    'China',
+    'CN',
+    'Shanxi',
+    'Yuncheng',
+    'CR8M+5WC, Wanrong County, Yuncheng, Shanxi, China, 044200',
+    'ChIJ4a_IKKMJejYR-AfEFu77m28',
+    'GEOMETRIC_CENTER',
+    '万荣东岳庙 飞云楼中国山西省运城市万荣县 邮政编码: 044200山西省运城市中国'
+)
+ON CONFLICT (google_place_id, specific_address)
+DO NOTHING;
+
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Architecture';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Architecture'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('39', (SELECT tag_id FROM Tags WHERE tag_name = 'Architecture'));
+IF NOT EXISTS (SELECT COUNT(*) FROM Tags WHERE tag_name = 'Black & White';) BEGIN INSERT INTO Tags (tag_name) VALUES ('Black & White'); END;
+INSERT INTO ArtworkTags (artwork_id, tag_id) VALUES ('39', (SELECT tag_id FROM Tags WHERE tag_name = 'Black & White'));
+INSERT INTO Artworks (date, name, original_source, primary_tool, location_id) VALUES ('2024-02-04', '', '[]', 'ink pen', SELECT location_id FROM Locations WHERE google_place_id = 'ChIJ4a_IKKMJejYR-AfEFu77m28' );

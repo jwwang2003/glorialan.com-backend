@@ -1,0 +1,33 @@
+{
+  "name": "glorialan.com-backend",
+  "version": "1.0.0",
+  "main": "build/main.js",
+  "repository": "https://github.com/jwwang2003/glorialan.com-backend.git",
+  "author": "JUN WEI WANG <wjw_03@outlook.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack",
+    "start": "node .",
+    "dev": "nodemon --watch src --ext ts --exec 'npm run build && npm start'"
+  },
+  "devDependencies": {
+    "@swc/cli": "^0.5.0",
+    "@swc/core": "^1.9.2",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.9.0",
+    "@types/pg": "^8.11.10",
+    "@types/webpack": "^5.28.5",
+    "express": "^4.21.1",
+    "nodemon": "^3.1.7",
+    "swc-loader": "^0.2.6",
+    "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3",
+    "webpack": "^5.96.1",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "pg": "^8.13.1"
+  }
+}
