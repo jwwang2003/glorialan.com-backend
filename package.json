@@ -6,15 +6,27 @@
   "author": "JUN WEI WANG <wjw_03@outlook.com>",
   "license": "MIT",
   "scripts": {
-    "build": "webpack",
-    "start": "node .",
-    "dev": "nodemon --watch src --ext ts --exec 'npm run build && npm start'"
+    "clean-build": "rm -rf build",
+    "prisma_migrate": "npx prisma migrate dev --name init",
+    "prisma": "prisma generate",
+    "build": "NODE_ENV=development webpack",
+    "start": "node --enable-source-maps .",
+    "dev": "nodemon --watch src --ext ts --exec 'npm run build && npm start'",
+    "build-prod": "yarn clean-build && NODE_ENV=production webpack",
+    "start-prod": "node .",
+    "production": "yarn build-prod && yarn start-prod"
   },
   "devDependencies": {
     "@swc/cli": "^0.5.0",
     "@swc/core": "^1.9.2",
+    "@types/bcrypt": "^5.0.2",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
+    "@types/express-session": "1.17.0",
+    "@types/multer": "^1.4.12",
     "@types/node": "^22.9.0",
+    "@types/node-schedule": "^2.1.7",
     "@types/pg": "^8.11.10",
     "@types/webpack": "^5.28.5",
     "express": "^4.21.1",
@@ -27,7 +39,22 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.722.0",
+    "@aws-sdk/s3-request-presigner": "^3.722.0",
+    "@prisma/client": "^6.1.0",
+    "bcryptjs": "^2.4.3",
+    "connect-redis": "^8.0.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "pg": "^8.13.1"
+    "exifreader": "^4.26.0",
+    "express-session": "^1.18.1",
+    "express-validator": "^7.2.1",
+    "mongoose": "^8.9.3",
+    "multer": "^1.4.5-lts.1",
+    "node-schedule": "^2.1.1",
+    "pg": "^8.13.1",
+    "prisma": "^6.1.0",
+    "redis": "^4.7.0",
+    "uuid": "^11.0.3"
   }
 }

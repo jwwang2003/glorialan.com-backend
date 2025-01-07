@@ -1,25 +1,28 @@
-FROM node:23.1 AS base
+FROM node:18-alpine AS base
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 EXPOSE 8000
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nodejs
 
 FROM base AS dev
 RUN --mount=type=bind,source=package.json,target=package.json \
     --mount=type=bind,source=yarn.lock,target=yarn.lock \
     --mount=type=cache,target=/root/.npm \
     yarn install --include=dev
-USER add
 COPY . .
 RUN mkdir node_modules/.cache
-RUN chown node:node node_modules/.cache
-CMD yarn dev
+# RUN chown nodejs:nodejs node_modules/.cache
+# USER nodejs
+CMD yarn prisma && yarn dev
 
 FROM base AS prod
 RUN --mount=type=bind,source=package.json,target=package.json \
     --mount=type=bind,source=yarn.lock,target=yarn.lock \
     --mount=type=cache,target=/root/.npm \
     yarn install --omit=dev
-USER add
 COPY . .
+# USER nodejs
 CMD yarn build && yarn start

@@ -2,20 +2,25 @@
   "$schema": "https://json.schemastore.org/swcrc",
   "jsc": {
     "baseUrl": "./src",
+    // NOTE: Keep this in sync with `tsconfig.json`
+    "paths": {
+      "@/*": ["./*"],
+      "@/utils/*": ["./utils/*"]
+    },
     "parser": {
       "syntax": "typescript",
       "tsx": false,
       "dynamicImport": true,
       "decorators": false
     },
-    "transform": null,
+    // "transform": null,
     "target": "es2016",
     "loose": false,
     "externalHelpers": false,
     "keepClassNames": false
   },
   "module": {
-    "type": "es6",
+    "type": "commonjs",
     "strict": false,
     "strictMode": false,
     "noInterop": false,

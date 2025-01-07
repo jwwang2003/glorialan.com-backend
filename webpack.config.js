@@ -2,6 +2,10 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
+  /**
+   * node, development, production
+   * Enables certain built-in optimizations
+   */
   mode: "none", // Sets bundling mode to 'none' (no optimizations).
   target: "node",
   entry: {
@@ -33,3 +37,13 @@ module.exports = {
     "express": "require('express')"
   }
 };
+
+if (process.env.NODE_ENV === 'development') {
+  module.exports.mode = "development";
+  module.exports.devtool = 'source-map';
+  module.exports.output.pathinfo = true;
+} else if (process.env.NODE_ENV === 'production') {
+  module.exports.mode = "production";
+} else {
+  module.exports.mode = "none";
+}

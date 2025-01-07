@@ -1,39 +1,26 @@
 services:
-  # django_server:
-  #   build: 
-  #     context: .
-  #     dockerfile: ./docker/python.Dockerfile
-  #   command: gunicorn ${DJANGO_PROJECT_NAME}.wsgi:application --bind 0.0.0.0:8000
-  #   volumes:
-  #     - ./src:/app:delegated
-  #   expose:
-  #     - 8000
-  #   ports:
-  #     - 8000:8000
-  #   env_file:
-  #     - .env
-  #   restart: always
-  
-  # node_server:
-  #   build:
-  #     context: .
-  #     dockerfile: ./docker/nodejs.Dockerfile
-  #     target: dev
-  #   volumes:
-  #     - ./src:/usr/src/app/src:delegated
-  #   expose:
-  #     - 8000
-  #   ports:
-  #     - 8000:8000
-  #   env_file:
-  #     - .env
-  #   restart: always
+  backend:
+    build:
+      dockerfile: ./docker/nodejs.Dockerfile
+      context: .
+      target: dev
+    volumes:
+      - root:/app/src
+    expose:
+      - 8000
+    ports:
+      - 8000:8000
+    env_file:
+      - .env
+    restart: always
+    networks:
+      - gloria-net
 
   db:
     image: postgres
     restart: always
     volumes:
-      - ./docker_data/db:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
     # set shared memory limit when using docker-compose
     shm_size: 128mb
     # or set shared memory limit when deploy via swarm stack
@@ -43,20 +30,24 @@ services:
     #    tmpfs:
     #      size: 134217728 # 128*2^20 bytes = 128Mb
     ports:
-      - 5432:${DB_PORT}
+      - 5432:${PG_PORT}
     environment:
       POSTGRES_USER: ${PG_USERNAME}
       POSTGRES_PASSWORD: ${PG_PASSWORD}
       POSTGRES_DB: ${PG_NAME}
+    networks:
+      - gloria-net
   
-  cache:
+  redis_cache:
     image: redis
     restart: always
     ports:
-      - 6379:${CACHE_PORT}
-    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+      - 6379:${REDIS_PORT}
+    command: redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD}
     volumes: 
-      - ./docker_data/cache:/data
+      - redis:/data
+    networks:
+      - gloria-net
 
   mongo:
     image: mongo
@@ -66,6 +57,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+    networks:
+      - gloria-net
   
   # Management panels
   # Management panels are available at 8080 and 8081 (DO NOT FORWARD THESE PORTS)
@@ -74,6 +67,8 @@ services:
     restart: always
     ports:
       - 8080:${ADMINER_PORT}
+    networks:
+      - gloria-net
   
   mongo-express:
     image: mongo-express
@@ -85,3 +80,32 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_ROOT_PASSWORD}
       ME_CONFIG_MONGODB_URL: mongodb://${MONGO_ROOT_USERNAME}:${MONGO_ROOT_PASSWORD}@mongo:27017/
       ME_CONFIG_BASICAUTH: true
+    networks:
+      - gloria-net
+
+volumes:
+  postgres:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./docker_data/db
+  
+  redis:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./docker_data/redis_cache
+
+  root:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./src
+
+networks:
+  gloria-net:
+    driver: bridge
+    name: gloria-net
