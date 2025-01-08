@@ -2,7 +2,8 @@ import { CorsOptions } from 'cors';
 
 const allowedOrigins = [
   'http://localhost:3000',      // Dev
-  'https://glorialan.com'       // Production
+  'https://glorialan.com',      // Production
+  'https://api.glorialan.com',  // API in production
 ];
 
 const corsConfig: CorsOptions = {
