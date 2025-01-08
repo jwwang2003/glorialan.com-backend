@@ -29,6 +29,10 @@ dependencies, but don't worry! There are optional modules are we don't need to
 install them unless we are using the specific service. Unfortuanately, there is
 no way to surpess these warinngs so just have to let them be.
 
+## Note on running scirpts
+
+- `chmod +x filename`
+- `./filename.sh`
 
 ## Nginx & SSL Setup
 
