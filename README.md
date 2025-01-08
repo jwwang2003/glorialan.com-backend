@@ -30,3 +30,16 @@ install them unless we are using the specific service. Unfortuanately, there is
 no way to surpess these warinngs so just have to let them be.
 
 
+## Nginx & SSL Setup
+
+Remember to add the sub-domains to your A records and handle them accordingly in
+the Nginx config file!
+
+- Generate the certificate and private key for orign server
+  ![](./assets/images/origin-server.png)
+- Save the certificate and private key inside `cert.pem` and `key.pem` respectively
+
+### References
+
+1. https://www.digitalocean.com/community/tutorials/how-to-host-a-website-using-cloudflare-and-nginx-on-ubuntu-22-04
+2. 

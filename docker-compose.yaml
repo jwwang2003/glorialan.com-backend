@@ -82,8 +82,25 @@ services:
       ME_CONFIG_BASICAUTH: true
     networks:
       - gloria-net
+  
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    networks:
+      - gloria-net
+    volumes:
+      - certbot-www:/var/www/certbot
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+      # - ./certbot/conf:/etc/letsencrypt
+      # - ./certbot/www:/var/www/certbot
+    command: certonly --webroot -w /var/www/certbot --email gls@glorialan.com --agree-tos --no-eff-email --staging -d glorialan.com  -d www.glorialan.com
 
 volumes:
+  certbot-www:
+  certbot-etc:
+  certbot-var:
+
   postgres:
     driver: local
     driver_opts:
