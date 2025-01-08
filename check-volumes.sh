@@ -10,9 +10,11 @@
 
 # List of folder paths relative to BASE_ROOT
 folders=(
-  "./docker_data/ssl"
   "./docker/html"
   "./docker/nginx"
+  "./docker_data/ssl"
+  "./docker_data/db"
+  "./docker_data/redis_cache"
   # "certbot/www"
   # "letsencrypt"
 )
