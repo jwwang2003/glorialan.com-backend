@@ -25,4 +25,4 @@ RUN --mount=type=bind,source=package.json,target=package.json \
     yarn install --omit=dev
 COPY . .
 # USER nodejs
-CMD yarn build && yarn start
+CMD yarn clean-build && yarn prisma-migrate && yarn prisma && yarn yarn build && yarn start

@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "clean-build": "rm -rf build",
-    "prisma_migrate": "npx prisma migrate dev --name init",
+    "prisma-migrate": "npx prisma migrate dev --name init",
     "prisma": "prisma generate",
     "build": "NODE_ENV=development webpack",
     "start": "node --enable-source-maps .",
