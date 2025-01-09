@@ -156,6 +156,10 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
+        "value": "linux-musl-openssl-3.0.x"
+      },
+      {
+        "fromEnvVar": null,
         "value": "darwin-arm64"
       },
       {
@@ -186,8 +190,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  binaryTargets = [\"darwin-arm64\", \"linux-musl-arm64-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"PG_URL\")\n}\n\nmodel Media {\n  id   BigInt @id @default(autoincrement())\n  uuid String @unique\n\n  // S3 information\n  bucket_name String\n  object_key  String @unique\n  url         String\n\n  // Basic metadata\n  original_filename String\n  size              BigInt\n  width             Int\n  height            Int\n  duration          Int // in ms (micro-seconds)\n\n  created_at DateTime\n  updated_at DateTime\n\n  description String\n\n  EXIF EXIF_Metadata?\n}\n\nmodel EXIF_Metadata {\n  id BigInt @id @default(autoincrement())\n\n  media    Media  @relation(fields: [media_id], references: [id])\n  media_id BigInt @unique\n}\n\nmodel User {\n  id       Int    @id @unique @default(autoincrement())\n  uuid     String @unique\n  name     String\n  username String @unique\n  password String\n\n  description        String\n  role               Int[]\n  special_privledges String[]\n}\n",
-  "inlineSchemaHash": "4588529b481b7377b2101d7324b86561abbb6bf701b4793b5a96d66113fcb744",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  binaryTargets = [\"linux-musl-openssl-3.0.x\", \"darwin-arm64\", \"linux-musl-arm64-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"PG_URL\")\n}\n\nmodel Media {\n  id   BigInt @id @default(autoincrement())\n  uuid String @unique\n\n  // S3 information\n  bucket_name String\n  object_key  String @unique\n  url         String\n\n  // Basic metadata\n  original_filename String\n  size              BigInt\n  width             Int\n  height            Int\n  duration          Int // in ms (micro-seconds)\n\n  created_at DateTime\n  updated_at DateTime\n\n  description String\n\n  EXIF EXIF_Metadata?\n}\n\nmodel EXIF_Metadata {\n  id BigInt @id @default(autoincrement())\n\n  media    Media  @relation(fields: [media_id], references: [id])\n  media_id BigInt @unique\n}\n\nmodel User {\n  id       Int    @id @unique @default(autoincrement())\n  uuid     String @unique\n  name     String\n  username String @unique\n  password String\n\n  description        String\n  role               Int[]\n  special_privledges String[]\n}\n",
+  "inlineSchemaHash": "30006935b02caed8ee5e0f9eec6a7dadd9153338bdfb4ff9230205632d2b4514",
   "copyEngine": true
 }
 config.dirname = '/'
