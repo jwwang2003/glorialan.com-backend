@@ -45,5 +45,6 @@ the Nginx config file!
 
 ### References
 
+1. https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu
 1. https://www.digitalocean.com/community/tutorials/how-to-host-a-website-using-cloudflare-and-nginx-on-ubuntu-22-04
 2. 
