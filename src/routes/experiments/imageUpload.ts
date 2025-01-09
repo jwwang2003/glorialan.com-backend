@@ -15,7 +15,10 @@ app.post('/imageupload', upload.single('image'), async (req, res) => {
     const tags = await exifreader.load(buffer, {async: true})
 
     res.status(200).json(tags);
+    return;
   }
+  res.status(200).json({msg: "there as nothing"});
+  return;
 });
 
 export default app;

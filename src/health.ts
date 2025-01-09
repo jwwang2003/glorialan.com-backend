@@ -7,5 +7,5 @@ export interface HealthCheck {
   uptime: number,
   awsS3: HealthReport,
   mongoDB: HealthReport,
-  redis: HealthReport
+  redis: HealthReport,
 }

@@ -13,10 +13,8 @@ RUN --mount=type=bind,source=package.json,target=package.json \
     --mount=type=cache,target=/root/.npm \
     yarn install --include=dev
 COPY . .
-RUN mkdir node_modules/.cache
 # RUN chown nodejs:nodejs node_modules/.cache
-# USER nodejs
-CMD yarn clean-build && yarn prisma-migrate && yarn prisma && yarn dev
+CMD yarn prisma && yarn dev
 
 FROM base AS prod
 RUN --mount=type=bind,source=package.json,target=package.json \

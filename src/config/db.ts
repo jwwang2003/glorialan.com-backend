@@ -68,7 +68,7 @@ export async function mongoCheck(): Promise<HealthReport> {
       99 = uninitialized
    */
   const health = {
-    OK: state === ConnectionStates.connected,
+    OK: state ===  ConnectionStates.connected, 
     msg: ConnectionStates[state]
   };
   return health;

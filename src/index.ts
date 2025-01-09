@@ -99,14 +99,14 @@ schedule.scheduleJob('*/5 * * * *', function() {
 
 app.get("/", async (req: express.Request, res: express.Response) => {
   res.status(200).json({
-    msg: "Hello, world!"
+    msg: "Hello, world!" 
   })
 });
 
 app.get("/health", async (req, res) => {
   // Health check
   const s3Status = await s3CheckConenction();
-  const mongoStatus = await mongoCheck();
+  const mongoStatus = await mongoCheck(); 
   const redisStatus = await redisCheck();
 
   const healthCheck: HealthCheck = {

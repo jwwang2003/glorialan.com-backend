@@ -15,6 +15,7 @@ const corsConfig: CorsOptions = {
       console.log("[CORS] Access from", origin);
       callback(null, true);
     } else {
+      console.log("[CORS] Denied access from", origin);
       callback(new Error('Not allowed by CORS'));
     }
   },

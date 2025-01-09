@@ -11,7 +11,7 @@
     "prisma": "prisma generate",
     "build": "NODE_ENV=development webpack",
     "start": "node --enable-source-maps .",
-    "dev": "nodemon --watch src --ext ts --exec 'npm run build && npm start'",
+    "dev": "nodemon --legacy-watch --watch src --ext ts --exec 'yarn build && yarn start'",
     "build-prod": "yarn clean-build && NODE_ENV=production webpack",
     "start-prod": "node .",
     "production": "yarn build-prod && yarn start-prod"

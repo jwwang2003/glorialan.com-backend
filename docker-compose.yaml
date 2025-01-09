@@ -5,7 +5,7 @@ services:
       context: .
       target: dev
     volumes:
-      - root:/app/src
+      - ./src:/app/src
     expose:
       - 8000
     ports:
