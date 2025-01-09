@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  binaryTargets   = ["linux-musl-openssl-3.0.x", "darwin-arm64", "linux-musl-arm64-openssl-3.0.x"]
 }
 
 datasource db {
@@ -31,7 +32,7 @@ model Media {
   EXIF EXIF_Metadata?
 }
 
-model EXIF_Metadata { 
+model EXIF_Metadata {
   id BigInt @id @default(autoincrement())
   
   media Media @relation(fields: [media_id], references: [id])

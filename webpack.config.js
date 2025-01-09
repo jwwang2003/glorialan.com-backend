@@ -1,5 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
+const nodeExternals = require('webpack-node-externals');
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   /**
@@ -11,6 +13,9 @@ module.exports = {
   entry: {
     bundle: "./src/index.ts", // Entry point of the application.
   },
+  output: {
+    clean: true
+  },  
   target: "node", // Bundles code for Node.js environment.
   module: {
     rules: [
@@ -31,11 +36,19 @@ module.exports = {
   ],
   output: {
     filename: "main.js", // Names output file after its entry point ('bundle.js').
-    path: path.resolve(__dirname, "build"), // Output directory for the bundled files.
+    path: path.resolve(__dirname, "build"), // Output direyarn add -D copy-webpack-pluginctory for the bundled files.
   },
-  externals: {
-    "express": "require('express')"
-  }
+  // externals: {
+  //   "express": "require('express')"
+  // },
+  // externals: [nodeExternals()],
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        { from: "node_modules/.prisma", to: ".prisma" },
+      ],
+    }),
+  ],
 };
 
 if (process.env.NODE_ENV === 'development') {
