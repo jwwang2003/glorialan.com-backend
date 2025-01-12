@@ -22,6 +22,7 @@ if (process.env.NODE_ENV) {
 
 const app = express();
 app.use(cors(corsConfig));          // Cross-Origin Resource Sharing policy
+app.use(express.json());            // JSON body
 
 ////////////////////////////////////////////////////////////////////////////////
 //////////                          AWS S3                            //////////
@@ -50,11 +51,11 @@ app.use(
   session({
     store: new RedisStore({
       client: redisClient,
-      prefix: "myapp:",
+      prefix: "gl:",
     }),
     resave: false,              // required: force lightweight session keep alive (touch)
     saveUninitialized: true,    // recommended: only save session when data exists
-    secret: "keyboard cat",
+    secret: String(process.env.SESSION_SECRET),
   })
 );
 

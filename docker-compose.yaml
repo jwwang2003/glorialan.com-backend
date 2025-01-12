@@ -1,26 +1,24 @@
 services:
   backend:
+    container_name: backend
+    restart: always
     build:
       dockerfile: ./docker/nodejs.Dockerfile
       context: .
-      target: prod
-    command: node ./main.js
+      target: dev
     volumes:
-      - ./build:/app
-    expose:
-      - 8000
+     - ./src:/app/src
     ports:
       - 8000:8000
     env_file:
       - .env
-    restart: always
     networks:
       - gloria-net
-  
 
   db:
+    container_name: db
     image: postgres
-    restart: always
+    restart: on-failure
     volumes:
       - postgres:/var/lib/postgresql/data
     # set shared memory limit when using docker-compose
@@ -41,8 +39,9 @@ services:
       - gloria-net
   
   redis_cache:
+    container_name: redis_cache
     image: redis
-    restart: always
+    restart: on-failure
     ports:
       - 6379:${REDIS_PORT}
     command: redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD}
@@ -52,8 +51,9 @@ services:
       - gloria-net
 
   mongo:
+    container_name: mongo
     image: mongo
-    restart: always
+    restart: on-failure
     ports:
       - 27017:${MONGO_PORT}
     environment:
@@ -65,16 +65,18 @@ services:
   # Management panels
   # Management panels are available at 8080 and 8081 (DO NOT FORWARD THESE PORTS)
   adminer:
+    container_name: adminer
     image: adminer
-    restart: always
+    restart: on-failure
     ports:
       - 8080:${ADMINER_PORT}
     networks:
       - gloria-net
   
   mongo-express:
+    container_name: mongo_express
     image: mongo-express
-    restart: always
+    restart: on-failure
     ports:
       - 8081:${MONGO_EXPRESS_PORT}
     environment:
@@ -87,9 +89,10 @@ services:
   
   # NGINX PROXY CONFIGURATION
   nginx:
+    container_name: nginx
     profiles:
       - nginx
-    container_name: nginx
+    restart: always
     image: nginx:latest
     volumes:
         # - ./nginx/nginx.conf:/etc/nginx/nginx.conf
@@ -119,8 +122,10 @@ services:
   #     # - ./certbot/conf:/etc/letsencrypt
   #     # - ./certbot/www:/var/www/certbot
   #   command: certonly --webroot -w /var/www/certbot --email gls@glorialan.com --agree-tos --no-eff-email --staging -d glorialan.com  -d www.glorialan.com
-  
+
 volumes:
+  # Note that the directories for the binded volumes must be present!
+  # Docker would not automatically create those directories
   postgres:
     driver: local
     driver_opts:

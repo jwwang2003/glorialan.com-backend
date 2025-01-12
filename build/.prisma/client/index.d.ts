@@ -31,7 +31,7 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 
 /**
  * ##  Prisma Client ʲˢ
- * 
+ *
  * Type-safe database client for TypeScript & Node.js
  * @example
  * ```
@@ -40,7 +40,7 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  * const media = await prisma.media.findMany()
  * ```
  *
- * 
+ *
  * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
  */
 export class PrismaClient<
@@ -52,7 +52,7 @@ export class PrismaClient<
 
     /**
    * ##  Prisma Client ʲˢ
-   * 
+   *
    * Type-safe database client for TypeScript & Node.js
    * @example
    * ```
@@ -61,7 +61,7 @@ export class PrismaClient<
    * const media = await prisma.media.findMany()
    * ```
    *
-   * 
+   *
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
    */
 
@@ -91,7 +91,7 @@ export class PrismaClient<
    * ```
    * const result = await prisma.$executeRaw`UPDATE User SET cool = ${true} WHERE email = ${'user@email.com'};`
    * ```
-   * 
+   *
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
   $executeRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<number>;
@@ -103,7 +103,7 @@ export class PrismaClient<
    * ```
    * const result = await prisma.$executeRawUnsafe('UPDATE User SET cool = $1 WHERE email = $2 ;', true, 'user@email.com')
    * ```
-   * 
+   *
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
   $executeRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<number>;
@@ -114,7 +114,7 @@ export class PrismaClient<
    * ```
    * const result = await prisma.$queryRaw`SELECT * FROM User WHERE id = ${1} OR email = ${'user@email.com'};`
    * ```
-   * 
+   *
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
   $queryRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<T>;
@@ -126,7 +126,7 @@ export class PrismaClient<
    * ```
    * const result = await prisma.$queryRawUnsafe('SELECT * FROM User WHERE id = $1 OR email = $2;', 1, 'user@email.com')
    * ```
-   * 
+   *
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
   $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
@@ -150,7 +150,9 @@ export class PrismaClient<
   $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => $Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<R>
 
 
-  $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb, ExtArgs>
+  $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb, ExtArgs, $Utils.Call<Prisma.TypeMapCb, {
+    extArgs: ExtArgs
+  }>, ClientOptions>
 
       /**
    * `prisma.media`: Exposes CRUD operations for the **Media** model.
@@ -160,7 +162,7 @@ export class PrismaClient<
     * const media = await prisma.media.findMany()
     * ```
     */
-  get media(): Prisma.MediaDelegate<ExtArgs>;
+  get media(): Prisma.MediaDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.eXIF_Metadata`: Exposes CRUD operations for the **EXIF_Metadata** model.
@@ -170,7 +172,7 @@ export class PrismaClient<
     * const eXIF_Metadata = await prisma.eXIF_Metadata.findMany()
     * ```
     */
-  get eXIF_Metadata(): Prisma.EXIF_MetadataDelegate<ExtArgs>;
+  get eXIF_Metadata(): Prisma.EXIF_MetadataDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
@@ -180,7 +182,7 @@ export class PrismaClient<
     * const users = await prisma.user.findMany()
     * ```
     */
-  get user(): Prisma.UserDelegate<ExtArgs>;
+  get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -239,8 +241,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.1.0
-   * Query Engine version: 11f085a2012c0f4778414c8db2651556ee0ef959
+   * Prisma Client JS version: 6.2.1
+   * Query Engine version: 4123509d24aa4dede1e864b46351bf2790323b69
    */
   export type PrismaVersion = {
     client: string
@@ -695,6 +697,10 @@ export namespace Prisma {
             args: Prisma.MediaUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
+          updateManyAndReturn: {
+            args: Prisma.MediaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaPayload>[]
+          }
           upsert: {
             args: Prisma.MediaUpsertArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$MediaPayload>
@@ -765,6 +771,10 @@ export namespace Prisma {
             args: Prisma.EXIF_MetadataUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
+          updateManyAndReturn: {
+            args: Prisma.EXIF_MetadataUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EXIF_MetadataPayload>[]
+          }
           upsert: {
             args: Prisma.EXIF_MetadataUpsertArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$EXIF_MetadataPayload>
@@ -834,6 +844,10 @@ export namespace Prisma {
           updateMany: {
             args: Prisma.UserUpdateManyArgs<ExtArgs>
             result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UserUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
           }
           upsert: {
             args: Prisma.UserUpsertArgs<ExtArgs>
@@ -920,8 +934,27 @@ export namespace Prisma {
       timeout?: number
       isolationLevel?: Prisma.TransactionIsolationLevel
     }
+    /**
+     * Global configuration for omitting model fields by default.
+     * 
+     * @example
+     * ```
+     * const prisma = new PrismaClient({
+     *   omit: {
+     *     user: {
+     *       password: true
+     *     }
+     *   }
+     * })
+     * ```
+     */
+    omit?: Prisma.GlobalOmitConfig
   }
-
+  export type GlobalOmitConfig = {
+    media?: MediaOmit
+    eXIF_Metadata?: EXIF_MetadataOmit
+    user?: UserOmit
+  }
 
   /* Types for Logging */
   export type LogLevel = 'info' | 'query' | 'warn' | 'error'
@@ -962,6 +995,7 @@ export namespace Prisma {
     | 'createManyAndReturn'
     | 'update'
     | 'updateMany'
+    | 'updateManyAndReturn'
     | 'upsert'
     | 'delete'
     | 'deleteMany'
@@ -1311,6 +1345,22 @@ export namespace Prisma {
     description?: boolean
   }, ExtArgs["result"]["media"]>
 
+  export type MediaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    uuid?: boolean
+    bucket_name?: boolean
+    object_key?: boolean
+    url?: boolean
+    original_filename?: boolean
+    size?: boolean
+    width?: boolean
+    height?: boolean
+    duration?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    description?: boolean
+  }, ExtArgs["result"]["media"]>
+
   export type MediaSelectScalar = {
     id?: boolean
     uuid?: boolean
@@ -1327,10 +1377,12 @@ export namespace Prisma {
     description?: boolean
   }
 
+  export type MediaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "uuid" | "bucket_name" | "object_key" | "url" | "original_filename" | "size" | "width" | "height" | "duration" | "created_at" | "updated_at" | "description", ExtArgs["result"]["media"]>
   export type MediaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     EXIF?: boolean | Media$EXIFArgs<ExtArgs>
   }
   export type MediaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type MediaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $MediaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Media"
@@ -1357,12 +1409,12 @@ export namespace Prisma {
 
   type MediaGetPayload<S extends boolean | null | undefined | MediaDefaultArgs> = $Result.GetResult<Prisma.$MediaPayload, S>
 
-  type MediaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<MediaFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type MediaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MediaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: MediaCountAggregateInputType | true
     }
 
-  export interface MediaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface MediaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Media'], meta: { name: 'Media' } }
     /**
      * Find zero or one Media that matches the filter.
@@ -1375,10 +1427,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends MediaFindUniqueArgs>(args: SelectSubset<T, MediaFindUniqueArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends MediaFindUniqueArgs>(args: SelectSubset<T, MediaFindUniqueArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
 
     /**
-     * Find one Media that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Media that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {MediaFindUniqueOrThrowArgs} args - Arguments to find a Media
      * @example
@@ -1389,7 +1441,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends MediaFindUniqueOrThrowArgs>(args: SelectSubset<T, MediaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends MediaFindUniqueOrThrowArgs>(args: SelectSubset<T, MediaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Find the first Media that matches the filter.
@@ -1404,7 +1456,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends MediaFindFirstArgs>(args?: SelectSubset<T, MediaFindFirstArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends MediaFindFirstArgs>(args?: SelectSubset<T, MediaFindFirstArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
 
     /**
      * Find the first Media that matches the filter or
@@ -1420,7 +1472,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends MediaFindFirstOrThrowArgs>(args?: SelectSubset<T, MediaFindFirstOrThrowArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends MediaFindFirstOrThrowArgs>(args?: SelectSubset<T, MediaFindFirstOrThrowArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Find zero or more Media that matches the filter.
@@ -1438,7 +1490,7 @@ export namespace Prisma {
      * const mediaWithIdOnly = await prisma.media.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends MediaFindManyArgs>(args?: SelectSubset<T, MediaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends MediaFindManyArgs>(args?: SelectSubset<T, MediaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "findMany", ClientOptions>>
 
     /**
      * Create a Media.
@@ -1452,7 +1504,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends MediaCreateArgs>(args: SelectSubset<T, MediaCreateArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends MediaCreateArgs>(args: SelectSubset<T, MediaCreateArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Create many Media.
@@ -1480,7 +1532,7 @@ export namespace Prisma {
      * })
      * 
      * // Create many Media and only return the `id`
-     * const mediaWithIdOnly = await prisma.media.createManyAndReturn({ 
+     * const mediaWithIdOnly = await prisma.media.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -1490,7 +1542,7 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends MediaCreateManyAndReturnArgs>(args?: SelectSubset<T, MediaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "createManyAndReturn">>
+    createManyAndReturn<T extends MediaCreateManyAndReturnArgs>(args?: SelectSubset<T, MediaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
 
     /**
      * Delete a Media.
@@ -1504,7 +1556,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends MediaDeleteArgs>(args: SelectSubset<T, MediaDeleteArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends MediaDeleteArgs>(args: SelectSubset<T, MediaDeleteArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Update one Media.
@@ -1521,7 +1573,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends MediaUpdateArgs>(args: SelectSubset<T, MediaUpdateArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends MediaUpdateArgs>(args: SelectSubset<T, MediaUpdateArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Delete zero or more Media.
@@ -1557,6 +1609,36 @@ export namespace Prisma {
     updateMany<T extends MediaUpdateManyArgs>(args: SelectSubset<T, MediaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
+     * Update zero or more Media and returns the data updated in the database.
+     * @param {MediaUpdateManyAndReturnArgs} args - Arguments to update many Media.
+     * @example
+     * // Update many Media
+     * const media = await prisma.media.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Media and only return the `id`
+     * const mediaWithIdOnly = await prisma.media.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MediaUpdateManyAndReturnArgs>(args: SelectSubset<T, MediaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
+
+    /**
      * Create or update one Media.
      * @param {MediaUpsertArgs} args - Arguments to update or create a Media.
      * @example
@@ -1573,7 +1655,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends MediaUpsertArgs>(args: SelectSubset<T, MediaUpsertArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends MediaUpsertArgs>(args: SelectSubset<T, MediaUpsertArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
 
 
     /**
@@ -1713,9 +1795,9 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__MediaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__MediaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    EXIF<T extends Media$EXIFArgs<ExtArgs> = {}>(args?: Subset<T, Media$EXIFArgs<ExtArgs>>): Prisma__EXIF_MetadataClient<$Result.GetResult<Prisma.$EXIF_MetadataPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
+    EXIF<T extends Media$EXIFArgs<ExtArgs> = {}>(args?: Subset<T, Media$EXIFArgs<ExtArgs>>): Prisma__EXIF_MetadataClient<$Result.GetResult<Prisma.$EXIF_MetadataPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1771,6 +1853,10 @@ export namespace Prisma {
      */
     select?: MediaSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Media
+     */
+    omit?: MediaOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: MediaInclude<ExtArgs> | null
@@ -1789,6 +1875,10 @@ export namespace Prisma {
      */
     select?: MediaSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Media
+     */
+    omit?: MediaOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: MediaInclude<ExtArgs> | null
@@ -1806,6 +1896,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Media
      */
     select?: MediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Media
+     */
+    omit?: MediaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -1855,6 +1949,10 @@ export namespace Prisma {
      */
     select?: MediaSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Media
+     */
+    omit?: MediaOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: MediaInclude<ExtArgs> | null
@@ -1903,6 +2001,10 @@ export namespace Prisma {
      */
     select?: MediaSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Media
+     */
+    omit?: MediaOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: MediaInclude<ExtArgs> | null
@@ -1946,6 +2048,10 @@ export namespace Prisma {
      */
     select?: MediaSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the Media
+     */
+    omit?: MediaOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: MediaInclude<ExtArgs> | null
@@ -1975,6 +2081,10 @@ export namespace Prisma {
      */
     select?: MediaSelectCreateManyAndReturn<ExtArgs> | null
     /**
+     * Omit specific fields from the Media
+     */
+    omit?: MediaOmit<ExtArgs> | null
+    /**
      * The data used to create many Media.
      */
     data: MediaCreateManyInput | MediaCreateManyInput[]
@@ -1989,6 +2099,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Media
      */
     select?: MediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Media
+     */
+    omit?: MediaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -2018,6 +2132,28 @@ export namespace Prisma {
   }
 
   /**
+   * Media updateManyAndReturn
+   */
+  export type MediaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Media
+     */
+    select?: MediaSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Media
+     */
+    omit?: MediaOmit<ExtArgs> | null
+    /**
+     * The data used to update Media.
+     */
+    data: XOR<MediaUpdateManyMutationInput, MediaUncheckedUpdateManyInput>
+    /**
+     * Filter which Media to update
+     */
+    where?: MediaWhereInput
+  }
+
+  /**
    * Media upsert
    */
   export type MediaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2025,6 +2161,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Media
      */
     select?: MediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Media
+     */
+    omit?: MediaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -2051,6 +2191,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Media
      */
     select?: MediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Media
+     */
+    omit?: MediaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -2080,6 +2224,10 @@ export namespace Prisma {
      */
     select?: EXIF_MetadataSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the EXIF_Metadata
+     */
+    omit?: EXIF_MetadataOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: EXIF_MetadataInclude<ExtArgs> | null
@@ -2094,6 +2242,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Media
      */
     select?: MediaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Media
+     */
+    omit?: MediaOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -2288,15 +2440,25 @@ export namespace Prisma {
     media?: boolean | MediaDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["eXIF_Metadata"]>
 
+  export type EXIF_MetadataSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    media_id?: boolean
+    media?: boolean | MediaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["eXIF_Metadata"]>
+
   export type EXIF_MetadataSelectScalar = {
     id?: boolean
     media_id?: boolean
   }
 
+  export type EXIF_MetadataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "media_id", ExtArgs["result"]["eXIF_Metadata"]>
   export type EXIF_MetadataInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     media?: boolean | MediaDefaultArgs<ExtArgs>
   }
   export type EXIF_MetadataIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    media?: boolean | MediaDefaultArgs<ExtArgs>
+  }
+  export type EXIF_MetadataIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     media?: boolean | MediaDefaultArgs<ExtArgs>
   }
 
@@ -2314,12 +2476,12 @@ export namespace Prisma {
 
   type EXIF_MetadataGetPayload<S extends boolean | null | undefined | EXIF_MetadataDefaultArgs> = $Result.GetResult<Prisma.$EXIF_MetadataPayload, S>
 
-  type EXIF_MetadataCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<EXIF_MetadataFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type EXIF_MetadataCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EXIF_MetadataFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: EXIF_MetadataCountAggregateInputType | true
     }
 
-  export interface EXIF_MetadataDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface EXIF_MetadataDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EXIF_Metadata'], meta: { name: 'EXIF_Metadata' } }
     /**
      * Find zero or one EXIF_Metadata that matches the filter.
@@ -2332,10 +2494,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends EXIF_MetadataFindUniqueArgs>(args: SelectSubset<T, EXIF_MetadataFindUniqueArgs<ExtArgs>>): Prisma__EXIF_MetadataClient<$Result.GetResult<Prisma.$EXIF_MetadataPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends EXIF_MetadataFindUniqueArgs>(args: SelectSubset<T, EXIF_MetadataFindUniqueArgs<ExtArgs>>): Prisma__EXIF_MetadataClient<$Result.GetResult<Prisma.$EXIF_MetadataPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
 
     /**
-     * Find one EXIF_Metadata that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one EXIF_Metadata that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {EXIF_MetadataFindUniqueOrThrowArgs} args - Arguments to find a EXIF_Metadata
      * @example
@@ -2346,7 +2508,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends EXIF_MetadataFindUniqueOrThrowArgs>(args: SelectSubset<T, EXIF_MetadataFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EXIF_MetadataClient<$Result.GetResult<Prisma.$EXIF_MetadataPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends EXIF_MetadataFindUniqueOrThrowArgs>(args: SelectSubset<T, EXIF_MetadataFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EXIF_MetadataClient<$Result.GetResult<Prisma.$EXIF_MetadataPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Find the first EXIF_Metadata that matches the filter.
@@ -2361,7 +2523,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends EXIF_MetadataFindFirstArgs>(args?: SelectSubset<T, EXIF_MetadataFindFirstArgs<ExtArgs>>): Prisma__EXIF_MetadataClient<$Result.GetResult<Prisma.$EXIF_MetadataPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends EXIF_MetadataFindFirstArgs>(args?: SelectSubset<T, EXIF_MetadataFindFirstArgs<ExtArgs>>): Prisma__EXIF_MetadataClient<$Result.GetResult<Prisma.$EXIF_MetadataPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
 
     /**
      * Find the first EXIF_Metadata that matches the filter or
@@ -2377,7 +2539,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends EXIF_MetadataFindFirstOrThrowArgs>(args?: SelectSubset<T, EXIF_MetadataFindFirstOrThrowArgs<ExtArgs>>): Prisma__EXIF_MetadataClient<$Result.GetResult<Prisma.$EXIF_MetadataPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends EXIF_MetadataFindFirstOrThrowArgs>(args?: SelectSubset<T, EXIF_MetadataFindFirstOrThrowArgs<ExtArgs>>): Prisma__EXIF_MetadataClient<$Result.GetResult<Prisma.$EXIF_MetadataPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Find zero or more EXIF_Metadata that matches the filter.
@@ -2395,7 +2557,7 @@ export namespace Prisma {
      * const eXIF_MetadataWithIdOnly = await prisma.eXIF_Metadata.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends EXIF_MetadataFindManyArgs>(args?: SelectSubset<T, EXIF_MetadataFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EXIF_MetadataPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends EXIF_MetadataFindManyArgs>(args?: SelectSubset<T, EXIF_MetadataFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EXIF_MetadataPayload<ExtArgs>, T, "findMany", ClientOptions>>
 
     /**
      * Create a EXIF_Metadata.
@@ -2409,7 +2571,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends EXIF_MetadataCreateArgs>(args: SelectSubset<T, EXIF_MetadataCreateArgs<ExtArgs>>): Prisma__EXIF_MetadataClient<$Result.GetResult<Prisma.$EXIF_MetadataPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends EXIF_MetadataCreateArgs>(args: SelectSubset<T, EXIF_MetadataCreateArgs<ExtArgs>>): Prisma__EXIF_MetadataClient<$Result.GetResult<Prisma.$EXIF_MetadataPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Create many EXIF_Metadata.
@@ -2437,7 +2599,7 @@ export namespace Prisma {
      * })
      * 
      * // Create many EXIF_Metadata and only return the `id`
-     * const eXIF_MetadataWithIdOnly = await prisma.eXIF_Metadata.createManyAndReturn({ 
+     * const eXIF_MetadataWithIdOnly = await prisma.eXIF_Metadata.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -2447,7 +2609,7 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends EXIF_MetadataCreateManyAndReturnArgs>(args?: SelectSubset<T, EXIF_MetadataCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EXIF_MetadataPayload<ExtArgs>, T, "createManyAndReturn">>
+    createManyAndReturn<T extends EXIF_MetadataCreateManyAndReturnArgs>(args?: SelectSubset<T, EXIF_MetadataCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EXIF_MetadataPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
 
     /**
      * Delete a EXIF_Metadata.
@@ -2461,7 +2623,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends EXIF_MetadataDeleteArgs>(args: SelectSubset<T, EXIF_MetadataDeleteArgs<ExtArgs>>): Prisma__EXIF_MetadataClient<$Result.GetResult<Prisma.$EXIF_MetadataPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends EXIF_MetadataDeleteArgs>(args: SelectSubset<T, EXIF_MetadataDeleteArgs<ExtArgs>>): Prisma__EXIF_MetadataClient<$Result.GetResult<Prisma.$EXIF_MetadataPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Update one EXIF_Metadata.
@@ -2478,7 +2640,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends EXIF_MetadataUpdateArgs>(args: SelectSubset<T, EXIF_MetadataUpdateArgs<ExtArgs>>): Prisma__EXIF_MetadataClient<$Result.GetResult<Prisma.$EXIF_MetadataPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends EXIF_MetadataUpdateArgs>(args: SelectSubset<T, EXIF_MetadataUpdateArgs<ExtArgs>>): Prisma__EXIF_MetadataClient<$Result.GetResult<Prisma.$EXIF_MetadataPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Delete zero or more EXIF_Metadata.
@@ -2514,6 +2676,36 @@ export namespace Prisma {
     updateMany<T extends EXIF_MetadataUpdateManyArgs>(args: SelectSubset<T, EXIF_MetadataUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
+     * Update zero or more EXIF_Metadata and returns the data updated in the database.
+     * @param {EXIF_MetadataUpdateManyAndReturnArgs} args - Arguments to update many EXIF_Metadata.
+     * @example
+     * // Update many EXIF_Metadata
+     * const eXIF_Metadata = await prisma.eXIF_Metadata.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EXIF_Metadata and only return the `id`
+     * const eXIF_MetadataWithIdOnly = await prisma.eXIF_Metadata.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EXIF_MetadataUpdateManyAndReturnArgs>(args: SelectSubset<T, EXIF_MetadataUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EXIF_MetadataPayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
+
+    /**
      * Create or update one EXIF_Metadata.
      * @param {EXIF_MetadataUpsertArgs} args - Arguments to update or create a EXIF_Metadata.
      * @example
@@ -2530,7 +2722,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends EXIF_MetadataUpsertArgs>(args: SelectSubset<T, EXIF_MetadataUpsertArgs<ExtArgs>>): Prisma__EXIF_MetadataClient<$Result.GetResult<Prisma.$EXIF_MetadataPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends EXIF_MetadataUpsertArgs>(args: SelectSubset<T, EXIF_MetadataUpsertArgs<ExtArgs>>): Prisma__EXIF_MetadataClient<$Result.GetResult<Prisma.$EXIF_MetadataPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
 
 
     /**
@@ -2670,9 +2862,9 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__EXIF_MetadataClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__EXIF_MetadataClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    media<T extends MediaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MediaDefaultArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    media<T extends MediaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MediaDefaultArgs<ExtArgs>>): Prisma__MediaClient<$Result.GetResult<Prisma.$MediaPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2717,6 +2909,10 @@ export namespace Prisma {
      */
     select?: EXIF_MetadataSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the EXIF_Metadata
+     */
+    omit?: EXIF_MetadataOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: EXIF_MetadataInclude<ExtArgs> | null
@@ -2735,6 +2931,10 @@ export namespace Prisma {
      */
     select?: EXIF_MetadataSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the EXIF_Metadata
+     */
+    omit?: EXIF_MetadataOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: EXIF_MetadataInclude<ExtArgs> | null
@@ -2752,6 +2952,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the EXIF_Metadata
      */
     select?: EXIF_MetadataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EXIF_Metadata
+     */
+    omit?: EXIF_MetadataOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -2801,6 +3005,10 @@ export namespace Prisma {
      */
     select?: EXIF_MetadataSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the EXIF_Metadata
+     */
+    omit?: EXIF_MetadataOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: EXIF_MetadataInclude<ExtArgs> | null
@@ -2849,6 +3057,10 @@ export namespace Prisma {
      */
     select?: EXIF_MetadataSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the EXIF_Metadata
+     */
+    omit?: EXIF_MetadataOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: EXIF_MetadataInclude<ExtArgs> | null
@@ -2892,6 +3104,10 @@ export namespace Prisma {
      */
     select?: EXIF_MetadataSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the EXIF_Metadata
+     */
+    omit?: EXIF_MetadataOmit<ExtArgs> | null
+    /**
      * Choose, which related nodes to fetch as well
      */
     include?: EXIF_MetadataInclude<ExtArgs> | null
@@ -2921,6 +3137,10 @@ export namespace Prisma {
      */
     select?: EXIF_MetadataSelectCreateManyAndReturn<ExtArgs> | null
     /**
+     * Omit specific fields from the EXIF_Metadata
+     */
+    omit?: EXIF_MetadataOmit<ExtArgs> | null
+    /**
      * The data used to create many EXIF_Metadata.
      */
     data: EXIF_MetadataCreateManyInput | EXIF_MetadataCreateManyInput[]
@@ -2939,6 +3159,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the EXIF_Metadata
      */
     select?: EXIF_MetadataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EXIF_Metadata
+     */
+    omit?: EXIF_MetadataOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -2968,6 +3192,32 @@ export namespace Prisma {
   }
 
   /**
+   * EXIF_Metadata updateManyAndReturn
+   */
+  export type EXIF_MetadataUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EXIF_Metadata
+     */
+    select?: EXIF_MetadataSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EXIF_Metadata
+     */
+    omit?: EXIF_MetadataOmit<ExtArgs> | null
+    /**
+     * The data used to update EXIF_Metadata.
+     */
+    data: XOR<EXIF_MetadataUpdateManyMutationInput, EXIF_MetadataUncheckedUpdateManyInput>
+    /**
+     * Filter which EXIF_Metadata to update
+     */
+    where?: EXIF_MetadataWhereInput
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EXIF_MetadataIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
    * EXIF_Metadata upsert
    */
   export type EXIF_MetadataUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2975,6 +3225,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the EXIF_Metadata
      */
     select?: EXIF_MetadataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EXIF_Metadata
+     */
+    omit?: EXIF_MetadataOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -3001,6 +3255,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the EXIF_Metadata
      */
     select?: EXIF_MetadataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EXIF_Metadata
+     */
+    omit?: EXIF_MetadataOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -3029,6 +3287,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the EXIF_Metadata
      */
     select?: EXIF_MetadataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EXIF_Metadata
+     */
+    omit?: EXIF_MetadataOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -3267,6 +3529,17 @@ export namespace Prisma {
     special_privledges?: boolean
   }, ExtArgs["result"]["user"]>
 
+  export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    uuid?: boolean
+    name?: boolean
+    username?: boolean
+    password?: boolean
+    description?: boolean
+    role?: boolean
+    special_privledges?: boolean
+  }, ExtArgs["result"]["user"]>
+
   export type UserSelectScalar = {
     id?: boolean
     uuid?: boolean
@@ -3278,6 +3551,7 @@ export namespace Prisma {
     special_privledges?: boolean
   }
 
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "uuid" | "name" | "username" | "password" | "description" | "role" | "special_privledges", ExtArgs["result"]["user"]>
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
@@ -3297,12 +3571,12 @@ export namespace Prisma {
 
   type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = $Result.GetResult<Prisma.$UserPayload, S>
 
-  type UserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct'> & {
+  type UserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: UserCountAggregateInputType | true
     }
 
-  export interface UserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+  export interface UserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['User'], meta: { name: 'User' } }
     /**
      * Find zero or one User that matches the filter.
@@ -3315,10 +3589,10 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends UserFindUniqueArgs>(args: SelectSubset<T, UserFindUniqueArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends UserFindUniqueArgs>(args: SelectSubset<T, UserFindUniqueArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
 
     /**
-     * Find one User that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one User that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
      * @param {UserFindUniqueOrThrowArgs} args - Arguments to find a User
      * @example
@@ -3329,7 +3603,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs>(args: SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs>(args: SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Find the first User that matches the filter.
@@ -3344,7 +3618,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends UserFindFirstArgs>(args?: SelectSubset<T, UserFindFirstArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends UserFindFirstArgs>(args?: SelectSubset<T, UserFindFirstArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
 
     /**
      * Find the first User that matches the filter or
@@ -3360,7 +3634,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends UserFindFirstOrThrowArgs>(args?: SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends UserFindFirstOrThrowArgs>(args?: SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Find zero or more Users that matches the filter.
@@ -3378,7 +3652,7 @@ export namespace Prisma {
      * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends UserFindManyArgs>(args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends UserFindManyArgs>(args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", ClientOptions>>
 
     /**
      * Create a User.
@@ -3392,7 +3666,7 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends UserCreateArgs>(args: SelectSubset<T, UserCreateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends UserCreateArgs>(args: SelectSubset<T, UserCreateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Create many Users.
@@ -3420,7 +3694,7 @@ export namespace Prisma {
      * })
      * 
      * // Create many Users and only return the `id`
-     * const userWithIdOnly = await prisma.user.createManyAndReturn({ 
+     * const userWithIdOnly = await prisma.user.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -3430,7 +3704,7 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends UserCreateManyAndReturnArgs>(args?: SelectSubset<T, UserCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "createManyAndReturn">>
+    createManyAndReturn<T extends UserCreateManyAndReturnArgs>(args?: SelectSubset<T, UserCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
 
     /**
      * Delete a User.
@@ -3444,7 +3718,7 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends UserDeleteArgs>(args: SelectSubset<T, UserDeleteArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends UserDeleteArgs>(args: SelectSubset<T, UserDeleteArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Update one User.
@@ -3461,7 +3735,7 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends UserUpdateArgs>(args: SelectSubset<T, UserUpdateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends UserUpdateArgs>(args: SelectSubset<T, UserUpdateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
 
     /**
      * Delete zero or more Users.
@@ -3497,6 +3771,36 @@ export namespace Prisma {
     updateMany<T extends UserUpdateManyArgs>(args: SelectSubset<T, UserUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
+     * Update zero or more Users and returns the data updated in the database.
+     * @param {UserUpdateManyAndReturnArgs} args - Arguments to update many Users.
+     * @example
+     * // Update many Users
+     * const user = await prisma.user.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Users and only return the `id`
+     * const userWithIdOnly = await prisma.user.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UserUpdateManyAndReturnArgs>(args: SelectSubset<T, UserUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
+
+    /**
      * Create or update one User.
      * @param {UserUpsertArgs} args - Arguments to update or create a User.
      * @example
@@ -3513,7 +3817,7 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends UserUpsertArgs>(args: SelectSubset<T, UserUpsertArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends UserUpsertArgs>(args: SelectSubset<T, UserUpsertArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
 
 
     /**
@@ -3653,7 +3957,7 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3705,6 +4009,10 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -3719,6 +4027,10 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -3732,6 +4044,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the User
      */
     select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -3777,6 +4093,10 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput
@@ -3821,6 +4141,10 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
      * Filter, which Users to fetch.
      */
     where?: UserWhereInput
@@ -3860,6 +4184,10 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
      * The data needed to create a User.
      */
     data: XOR<UserCreateInput, UserUncheckedCreateInput>
@@ -3885,6 +4213,10 @@ export namespace Prisma {
      */
     select?: UserSelectCreateManyAndReturn<ExtArgs> | null
     /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
      * The data used to create many Users.
      */
     data: UserCreateManyInput | UserCreateManyInput[]
@@ -3899,6 +4231,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the User
      */
     select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
     /**
      * The data needed to update a User.
      */
@@ -3924,6 +4260,28 @@ export namespace Prisma {
   }
 
   /**
+   * User updateManyAndReturn
+   */
+  export type UserUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * The data used to update Users.
+     */
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
+    /**
+     * Filter which Users to update
+     */
+    where?: UserWhereInput
+  }
+
+  /**
    * User upsert
    */
   export type UserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3931,6 +4289,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the User
      */
     select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
     /**
      * The filter to search for the User to update in case it exists.
      */
@@ -3953,6 +4315,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the User
      */
     select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
     /**
      * Filter which User to delete.
      */
@@ -3977,6 +4343,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the User
      */
     select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
   }
 
 

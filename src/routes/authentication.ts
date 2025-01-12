@@ -3,6 +3,7 @@ import { ERROR } from '@/error';
 import { createUser, findUser } from '@/postgres';
 import { getSuperKey } from '@/superKey';
 import { compareHash } from '@/utils/hash';
+import { stripUser } from '@/utils/user';
 
 import { authUserChain, createSuperuserChain, createUserChain } from '@/validators';
 import type { User } from '@prisma/client';
@@ -30,6 +31,28 @@ app.get(
   }
 );
 
+app.get(
+  "/retrieve_cookie",
+  async (req: express.Request, res: express.Response) => {
+    if (req.headers.origin !== undefined) {
+      res.status(404).json({
+        message: "NOT ALLOWED."
+      });
+      return;
+    }
+
+    if (!req.session || !req.session.user) {
+      console.log(req.session)
+      res.status(401).json({
+        message: "Unauthorized."
+      });
+      return;
+    }
+
+    res.status(200).json(stripUser(req.session.user));
+  }
+);
+
 /**
  * Methods:
  * 1. Aquire authentication (login)
@@ -37,10 +60,14 @@ app.get(
  * 3. Registeration/superuser (signup)
  */
 
-app.get(
+app.post(
   "/login",
   authUserChain(),
   async (req: express.Request, res: express.Response) => {
+    console.log(req.body);
+    if(req.session) {
+      console.log(req.session)
+    }
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.status(400).json({ errors: errors.array() });
