@@ -8,37 +8,6 @@ datasource db {
   url      = env("PG_URL")
 }
 
-model Media {
-  id    BigInt @id @default(autoincrement())
-  uuid  String @unique
-  
-  // S3 information
-  bucket_name   String
-  object_key    String @unique
-  url           String
-
-  // Basic metadata
-  original_filename   String
-  size                BigInt
-  width               Int
-  height              Int
-  duration            Int       // in ms (micro-seconds)
-
-  created_at  DateTime
-  updated_at  DateTime
-
-  description String
-
-  EXIF EXIF_Metadata?
-}
-
-model EXIF_Metadata {
-  id BigInt @id @default(autoincrement())
-  
-  media Media @relation(fields: [media_id], references: [id])
-  media_id BigInt @unique
-}
-
 model User {
   id                  Int @id @unique @default(autoincrement())
   uuid                String @unique
@@ -49,4 +18,266 @@ model User {
   description         String
   role                Int[]
   special_privledges  String[]
+}
+
+//
+// MODEL: Media Model (S3 references)
+//
+// Stores & tracks the metadata for images inside of S3 bucket
+//
+model Media {
+  id              BigInt @id @default(autoincrement())
+  uuid            String @unique
+
+  // S3 location details
+  s3Bucket        String
+  s3Key           String
+  s3Region        String?  // optional, if you need to store region
+  contentType     String?  // e.g., "image/jpeg", "video/mp4"
+  fileSize        Int?     // file size in bytes
+  metadata        Json?    // optional for storing arbitrary metadata
+
+  // Relationship to Artwork (one Artwork can have many Media entries)
+  artworkId       Int?
+  artwork         Artwork? @relation(fields: [artworkId], references: [id])
+
+  // Relationship to Photography
+  photoId         Int?
+  photo           Photography? @relation(fields: [photoId], references: [id])
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+//
+// MODEL: Location
+//
+// Stores geographical data, including coordinates (lat/lng),
+// country/city, address, Google Place info, etc.
+//
+model Location {
+  id              Int      @id @default(autoincrement())
+  lat             Float?
+  lng             Float?
+
+  // For example, storing the raw address string from Google Maps
+  specificAddress String?
+  
+  // Extracted location fields
+  country         String?
+  countryCode     String?
+  province        String?
+  city            String?
+
+  googlePlaceId   String?  // ID from Google Places
+  locationType    String?  // e.g., "ROOFTOP", "GEOMETRIC_CENTER", etc.
+  memo            String?  // any user-provided notes about this place
+
+  // Relationship back to Artwork
+  photos          Photography[]
+  artworks        Artwork[]
+
+  // For conflict resolution, you can add a unique constraint
+  // if you prefer to keep them from duplicating
+  @@unique([googlePlaceId, specificAddress])
+}
+
+//
+// MODEL: Artwork
+//
+// Stores data corresponding to each CSV row (plus relationships).
+//
+model Artwork {
+  id              Int @id @default(autoincrement())
+  
+  // e.g. "2021-01-02" (you can change the type to DateTime if you'd like)
+  date            String?
+
+  // Some name or title (if needed)
+  name            String?
+
+  // Example: storing multiple sources as a Postgres text array
+  // If you’re not on Postgres, you might store a single string or
+  // create a related table for sources.
+  originalSource  String[]
+
+  primaryTool     String?
+
+  // Relationship to a Location
+  locationId      Int?      // optional if not all artworks have a location
+  location        Location? @relation(fields: [locationId], references: [id])
+
+  // One-to-many relationships
+  mediaAssets     Media[]
+
+  // Many-to-many relationship via ArtworkTag
+  tags            ArtworkTag[]
+  collections     CollectionArtwork[]
+}
+
+//
+// MODEL: Photography
+//
+// Join table for Artwork <-> Tag many-to-many relationship.
+// The join table if necessary for keeping relational best practices & normalization
+//
+model Photography {
+  id        Int @id @default(autoincrement())
+
+  // Relationship to a Location
+  locationId      Int?      // optional if not all artworks have a location
+  location        Location? @relation(fields: [locationId], references: [id])
+  
+  // One-to-one relationship with ExifData
+  exifData        ExifData? // Only photography would have EXIF data
+
+  // Timestamps
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  mediaAssets   Media[]
+
+  tags          PhotoTag[]
+  collections   CollectionPhotography[]
+}
+
+//
+// MODEL: ExifData
+//
+// Stores image-specific metadata fields. Adjust as needed.
+//
+model ExifData {
+  id            Int @id @default(autoincrement())
+  cameraMake    String?
+  cameraModel   String?
+  lensModel     String?
+  focalLength   Float?
+  iso           Int?
+  shutterSpeed  String?
+  aperture      String?
+
+  metadata      Json?     // The raw extracted information can be stored in here
+
+  // Timestamps （this is the timestamp stored in the image)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // EXIF-Photo relationship (one-to-one)
+  photoId       Int @unique
+  photo         Photography @relation(fields: [photoId], references: [id])
+}
+
+//
+// MODEL: Tag
+//
+// Stores a single tag (e.g., "architecture", "black & white", etc.)
+// Many Artworks can have many Tags.
+//
+model Tag {
+  id        Int @id @default(autoincrement())
+  tagName   String
+
+  // M:N (M to N) relationship with artwork
+  // An artwork can have 0~M tags, each tag may be referred by 0~N artworks
+  artworks  ArtworkTag[]
+  photography PhotoTag[]
+  collections CollectionTag[]
+}
+
+//
+// MODEL: ArtworkTag
+//
+// Join table for Artwork <-> Tag many-to-many relationship.
+// The join table if necessary for keeping relational best practices & normalization
+//
+model ArtworkTag {
+  int         Int       @id @default(autoincrement())
+  
+  artworkId   Int
+  tagId       Int
+  
+  artwork     Artwork   @relation(fields: [artworkId], references: [id])
+  tag         Tag       @relation(fields: [tagId], references: [id])
+
+  // Make sure each (artworkId, tagId) pair is unique
+  @@unique([artworkId, tagId])
+}
+
+//
+// MODEL: PhotoTag
+//
+model PhotoTag {
+  int       Int         @id @default(autoincrement())
+
+  photoId   Int
+  tagId     Int
+
+  photo     Photography @relation(fields: [photoId], references: [id])
+  tag       Tag         @relation(fields: [tagId], references: [id])
+
+  // Make sure each (artworkId, tagId) pair is unique
+  @@unique([photoId, tagId])
+}
+
+//
+// MODEL: Collection Model
+//
+model Collection {
+  id          Int         @id @default(autoincrement())
+  name        String?
+  description String?
+
+  // Many-to-many with Artwork, Photography, Tag
+  artworks      CollectionArtwork[]
+  photographs   CollectionPhotography[]
+  tags          CollectionTag[]
+
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+//
+// MODEL: CollectionArtwork (Join Table)
+// Collection <-> Artwork
+//
+model CollectionArtwork {
+  id           Int        @id @default(autoincrement())
+  collectionId Int
+  artworkId    Int
+
+  collection   Collection @relation(fields: [collectionId], references: [id])
+  artwork      Artwork    @relation(fields: [artworkId], references: [id])
+
+  @@unique([collectionId, artworkId])
+}
+
+//
+// MODEL: CollectionPhotography (Join Table)
+// Collection <-> Photography
+//
+model CollectionPhotography {
+  id            Int         @id @default(autoincrement())
+  collectionId  Int
+  photographyId Int
+
+  collection    Collection  @relation(fields: [collectionId], references: [id])
+  photography   Photography @relation(fields: [photographyId], references: [id])
+
+  @@unique([collectionId, photographyId])
+}
+
+//
+// MODEL: CollectionTag (Join Table)
+// Collection <-> Tag
+//
+model CollectionTag {
+  id            Int         @id @default(autoincrement())
+  collectionId  Int
+  tagId         Int
+
+  collection    Collection  @relation(fields: [collectionId], references: [id])
+  tag           Tag         @relation(fields: [tagId], references: [id])
+
+  @@unique([collectionId, tagId])
 }

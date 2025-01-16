@@ -3,4 +3,5 @@ dist
 .env
 
 docker_data
+docker/ssl
 build

@@ -22,7 +22,7 @@ if (process.env.NODE_ENV) {
 
 const app = express();
 app.use(cors(corsConfig));          // Cross-Origin Resource Sharing policy
-app.use(express.json());            // JSON body
+// app.use(express.json());            // JSON body
 
 ////////////////////////////////////////////////////////////////////////////////
 //////////                          AWS S3                            //////////

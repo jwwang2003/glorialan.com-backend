@@ -14,84 +14,12 @@ services:
       - .env
     networks:
       - gloria-net
-
-  db:
-    container_name: db
-    image: postgres
-    restart: on-failure
-    volumes:
-      - postgres:/var/lib/postgresql/data
-    # set shared memory limit when using docker-compose
-    shm_size: 128mb
-    # or set shared memory limit when deploy via swarm stack
-    #volumes:
-    #  - type: tmpfs
-    #    target: /dev/shm
-    #    tmpfs:
-    #      size: 134217728 # 128*2^20 bytes = 128Mb
-    ports:
-      - 5432:${PG_PORT}
-    environment:
-      POSTGRES_USER: ${PG_USERNAME}
-      POSTGRES_PASSWORD: ${PG_PASSWORD}
-      POSTGRES_DB: ${PG_NAME}
-    networks:
-      - gloria-net
-  
-  redis_cache:
-    container_name: redis_cache
-    image: redis
-    restart: on-failure
-    ports:
-      - 6379:${REDIS_PORT}
-    command: redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD}
-    volumes: 
-      - redis:/data
-    networks:
-      - gloria-net
-
-  mongo:
-    container_name: mongo
-    image: mongo
-    restart: on-failure
-    ports:
-      - 27017:${MONGO_PORT}
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
-    networks:
-      - gloria-net
-  
-  # Management panels
-  # Management panels are available at 8080 and 8081 (DO NOT FORWARD THESE PORTS)
-  adminer:
-    container_name: adminer
-    image: adminer
-    restart: on-failure
-    ports:
-      - 8080:${ADMINER_PORT}
-    networks:
-      - gloria-net
-  
-  mongo-express:
-    container_name: mongo_express
-    image: mongo-express
-    restart: on-failure
-    ports:
-      - 8081:${MONGO_EXPRESS_PORT}
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_ROOT_USERNAME}
-      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_ROOT_PASSWORD}
-      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_ROOT_USERNAME}:${MONGO_ROOT_PASSWORD}@mongo:27017/
-      ME_CONFIG_BASICAUTH: true
-    networks:
-      - gloria-net
   
   # NGINX PROXY CONFIGURATION
   nginx:
     container_name: nginx
     profiles:
-      - nginx
+      - nginx     # Only need to run NGINX on the server
     restart: always
     image: nginx:latest
     volumes:
@@ -126,33 +54,18 @@ services:
 volumes:
   # Note that the directories for the binded volumes must be present!
   # Docker would not automatically create those directories
-  postgres:
-    driver: local
-    driver_opts:
-      o: bind
-      type: none
-      device: ./docker_data/db
-  
-  redis:
-    driver: local
-    driver_opts:
-      o: bind
-      type: none
-      device: ./docker_data/redis_cache
-
   root:
     driver: local
     driver_opts:
       o: bind
       type: none
       device: ./src
-  
   ssl:
     driver: local
     driver_opts:
       o: bind
       type: none
-      device: ./docker_data/ssl
+      device: ./docker/ssl
   static:
     driver: local
     driver_opts:
@@ -168,5 +81,6 @@ volumes:
 
 networks:
   gloria-net:
-    driver: bridge
+    # driver: bridge
     name: gloria-net
+    external: true
