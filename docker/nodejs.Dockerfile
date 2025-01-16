@@ -13,7 +13,7 @@ RUN --mount=type=bind,source=package.json,target=package.json \
     --mount=type=cache,target=/root/.npm \
     yarn install --include=dev
 COPY . .
-CMD yarn prisma && yarn dev
+CMD yarn prisma-migrate && yarn prisma && yarn dev
 
 FROM base AS prod
 RUN --mount=type=bind,source=package.json,target=package.json \
@@ -21,5 +21,5 @@ RUN --mount=type=bind,source=package.json,target=package.json \
     --mount=type=cache,target=/root/.npm \
     yarn install --omit=dev
 COPY . .
-RUN yarn clean && yarn prisma && yarn build-prod
+RUN yarn clean && yarn prisma-migrate &&  yarn prisma && yarn build-prod
 CMD yarn start
